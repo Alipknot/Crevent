@@ -19,6 +19,7 @@ $com=$comuna->GetList();
 Buscar:<br>
 <input type="text" name="busqueda" size="60"><br>
       <select name="cat">
+        <option value=""></option>
               <?php
 
 
@@ -28,6 +29,7 @@ Buscar:<br>
      }?>
                 </select>
                 <select name="com">
+                  <option value=""></option>
                         <?php
 
 
