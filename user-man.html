@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+</head>
+
+<body>
+<form action="user-man.php" method="POST">
+Username:<br>
+<input type="text" name="user_name" size="60"><br>
+Password:<br>
+<input type="password" name="password" size="60"><br>
+<input type="hidden" name="op" value="new">
+<input type="submit" value="Create user">
+</form>
+
+<form action="user-man.php" method="POST">
+<input type="hidden" name="op" value="login">
+Username:<br>
+<input type="text" name="user_name" size="60"><br>
+Password:<br>
+<input type="password" name="password" size="60"><br>
+<input type="submit" value="Log in">
+</form>
+
+<form action="user-man.php" method="POST">
+<input type="hidden" name="op" value="change">
+Username:<br>
+<input type="text" name="user_name" size="60"><br>
+Current password:<br>
+<input type="password" name="password" size="60"><br>
+New password:<br>
+<input type="password" name="newpass" size="60"><br>
+<input type="submit" value="Change password">
+</form>
+</body>
+</html>
