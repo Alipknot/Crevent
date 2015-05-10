@@ -9,7 +9,8 @@
 	`desce` TEXT NOT NULL,
 	`tele` VARCHAR(255) NOT NULL,
 	`rating` DECIMAL NOT NULL,
-	`desccat` VARCHAR(255) NOT NULL, PRIMARY KEY  (`ID_empre`)) ENGINE=MyISAM;
+	`desccat` VARCHAR(255) NOT NULL,
+	`come` VARCHAR(255) NOT NULL, PRIMARY KEY  (`ID_empre`)) ENGINE=MyISAM;
 */
 
 /**
@@ -18,7 +19,7 @@
 * @version POG 3.2 / PHP5.1 MYSQL
 * @see http://www.phpobjectgenerator.com/plog/tutorials/45/pdo-mysql
 * @copyright Free for personal & commercial use. (Offered under the BSD license)
-* @link http://www.phpobjectgenerator.com/?language=php5.1&wrapper=pdo&pdoDriver=mysql&objectName=bempress&attributeList=array+%28%0A++0+%3D%3E+%27NamEmpresa%27%2C%0A++1+%3D%3E+%27NoCli%27%2C%0A++2+%3D%3E+%27DescE%27%2C%0A++3+%3D%3E+%27TelE%27%2C%0A++4+%3D%3E+%27rating%27%2C%0A++5+%3D%3E+%27DescCat%27%2C%0A%29&typeList=array%2B%2528%250A%2B%2B0%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B1%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B2%2B%253D%253E%2B%2527TEXT%2527%252C%250A%2B%2B3%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B4%2B%253D%253E%2B%2527DECIMAL%2527%252C%250A%2B%2B5%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2529&classList=array+%28%0A++0+%3D%3E+%27%27%2C%0A++1+%3D%3E+%27%27%2C%0A++2+%3D%3E+%27%27%2C%0A++3+%3D%3E+%27%27%2C%0A++4+%3D%3E+%27%27%2C%0A++5+%3D%3E+%27%27%2C%0A%29
+* @link http://www.phpobjectgenerator.com/?language=php5.1&wrapper=pdo&pdoDriver=mysql&objectName=bempress&attributeList=array+%28%0A++0+%3D%3E+%27NamEmpresa%27%2C%0A++1+%3D%3E+%27NoCli%27%2C%0A++2+%3D%3E+%27DescE%27%2C%0A++3+%3D%3E+%27TelE%27%2C%0A++4+%3D%3E+%27rating%27%2C%0A++5+%3D%3E+%27DescCat%27%2C%0A++6+%3D%3E+%27ComE%27%2C%0A%29&typeList=array%2B%2528%250A%2B%2B0%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B1%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B2%2B%253D%253E%2B%2527TEXT%2527%252C%250A%2B%2B3%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B4%2B%253D%253E%2B%2527DECIMAL%2527%252C%250A%2B%2B5%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B6%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2529&classList=array+%28%0A++0+%3D%3E+%27%27%2C%0A++1+%3D%3E+%27%27%2C%0A++2+%3D%3E+%27%27%2C%0A++3+%3D%3E+%27%27%2C%0A++4+%3D%3E+%27%27%2C%0A++5+%3D%3E+%27%27%2C%0A++6+%3D%3E+%27%27%2C%0A%29
 */
 include_once('class.pog_base.php');
 class bempress extends POG_Base
@@ -55,6 +56,11 @@ class bempress extends POG_Base
 	 */
 	public $DescCat;
 
+	/**
+	 * @var VARCHAR(255)
+	 */
+	public $ComE;
+
 	public $pog_attribute_type = array(
 		"ID_empre" => array('db_attributes' => array("NUMERIC", "INT")),
 		"NamEmpresa" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
@@ -63,6 +69,7 @@ class bempress extends POG_Base
 		"TelE" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"rating" => array('db_attributes' => array("NUMERIC", "DECIMAL")),
 		"DescCat" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
+		"ComE" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		);
 	public $pog_query;
 
@@ -83,7 +90,7 @@ class bempress extends POG_Base
 		}
 	}
 
-	function bempress($NamEmpresa='', $NoCli='', $DescE='', $TelE='', $rating='', $DescCat='')
+	function bempress($NamEmpresa='', $NoCli='', $DescE='', $TelE='', $rating='', $DescCat='', $ComE='')
 	{
 		$this->NamEmpresa = $NamEmpresa;
 		$this->NoCli = $NoCli;
@@ -91,6 +98,7 @@ class bempress extends POG_Base
 		$this->TelE = $TelE;
 		$this->rating = $rating;
 		$this->DescCat = $DescCat;
+		$this->ComE = $ComE;
 	}
 
 
@@ -107,12 +115,13 @@ class bempress extends POG_Base
 		while ($row = Database::Read($cursor))
 		{
 			$this->ID_empre = $row['ID_empre'];
-			$this->NamEmpresa = $this->Unescape($row['NamEmpresa']);
-			$this->NoCli = $this->Unescape($row['Noli']);
-			$this->DescE = $this->Unescape($row['DescE']);
-			$this->TelE = $this->Unescape($row['TelE']);
+			$this->NamEmpresa = $this->Unescape($row['namempresa']);
+			$this->NoCli = $this->Unescape($row['nocli']);
+			$this->DescE = $this->Unescape($row['desce']);
+			$this->TelE = $this->Unescape($row['tele']);
 			$this->rating = $this->Unescape($row['rating']);
-			$this->DescCat = $this->Unescape($row['DescCat']);
+			$this->DescCat = $this->Unescape($row['desccat']);
+			$this->ComE = $this->Unescape($row['come']);
 		}
 		return $this;
 	}
@@ -204,6 +213,7 @@ class bempress extends POG_Base
 			$bempress->TelE = $this->Unescape($row['TelE']);
 			$bempress->rating = $this->Unescape($row['rating']);
 			$bempress->DescCat = $this->Unescape($row['DescCat']);
+			$bempress->ComE = $this->Unescape($row['ComE']);
 			$bempressList[] = $bempress;
 		}
 		return $bempressList;
@@ -230,17 +240,19 @@ class bempress extends POG_Base
 			`desce`='".$this->Escape($this->DescE)."',
 			`tele`='".$this->Escape($this->TelE)."',
 			`rating`='".$this->Escape($this->rating)."',
-			`desccat`='".$this->Escape($this->DescCat)."' where `ID_empre`='".$this->ID_empre."'";
+			`desccat`='".$this->Escape($this->DescCat)."',
+			`come`='".$this->Escape($this->ComE)."' where `ID_empre`='".$this->ID_empre."'";
 		}
 		else
 		{
-			$this->pog_query = "insert into `bempress` (`namempresa`, `nocli`, `desce`, `tele`, `rating`, `desccat` ) values (
+			$this->pog_query = "insert into `bempress` (`namempresa`, `nocli`, `desce`, `tele`, `rating`, `desccat`, `come` ) values (
 			'".$this->Escape($this->NamEmpresa)."',
 			'".$this->Escape($this->NoCli)."',
 			'".$this->Escape($this->DescE)."',
 			'".$this->Escape($this->TelE)."',
 			'".$this->Escape($this->rating)."',
-			'".$this->Escape($this->DescCat)."' )";
+			'".$this->Escape($this->DescCat)."',
+			'".$this->Escape($this->ComE)."' )";
 		}
 		$insertId = Database::InsertOrUpdate($this->pog_query, $connection);
 		if ($this->ID_empre == "")
