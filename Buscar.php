@@ -36,7 +36,7 @@ Buscar:<br>
                         foreach($com as $x){
 
 
-                          echo("<option value='".$x->NamComuna."'>".$x->NamComuna."</option>");
+                          echo("<option value='".$x['NamComuna']."'>".$x['NamComuna']."</option>");
                }?>
                           </select>
 <input type="submit" value="Buscar">
