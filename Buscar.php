@@ -7,6 +7,7 @@ include(__DIR__ .'/configuration.php');
 include(__DIR__ .'/objects/class.database.php');
 include(__DIR__ .'/objects/class.bempress.php');
 include(__DIR__ .'/objects/class.comuna.php');
+if($comp===1){
 $Categoria = new Categoria();
 $catls= $Categoria->GetList();
 $comuna = new Comuna();
@@ -102,3 +103,5 @@ $com=$comuna->GetList();
           </body>
 
           </html>
+<?php }else{header("location: index.php");
+die();} ?>
