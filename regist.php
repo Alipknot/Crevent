@@ -3,7 +3,7 @@ include('config.php');
 include('funciones.php');
 include('class/Usuario.php');
 
-	
+
 $user = get_post_var('user_name');
 /* Sanity-check the username, don't rely on our use of prepared statements
  * alone to prevent attacks on the SQL server via malicious usernames. */
@@ -24,5 +24,5 @@ $reg=get_post_var('region');
 $edad = get_post_var('edad');
 
 $regs = new Usuario;
-$regs->create_user($user, $email, $pass,$nombre,$edad, $dir, $city, $reg);	
+$regs->create_user($user, $email, $pass,$nombre,$edad, $dir, $city, $reg, 0);	
 ?>

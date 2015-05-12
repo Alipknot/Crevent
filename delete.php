@@ -1,23 +1,41 @@
 <?php
-include('config.php');
-include('funciones.php');
-include('class/Usuario.php');
+include 'header.php';
+if($comp===1){
+if($per===2){
+ ?>
+<div class="section">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h1 class="text-center">Eliminar usuario:</h1>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-offset-3 col-md-6">
+                      <form role="form" method="POST" action="deleteuser.php">
+                          <div class="form-group">
+                              <div class="input-group">
+                                  <input type="text" name="user_name" class="form-control" placeholder="Nombre de usuario">
+                                  <span class="input-group-btn">
+                                      <input type="submit" class="btn btn-success" value="Borrar">
+                                  </span>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
 
-	
-$user = get_post_var('user_name');
-/* Sanity-check the username, don't rely on our use of prepared statements
- * alone to prevent attacks on the SQL server via malicious usernames. */
-if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $user))
-	fail('Nombre de usuario invalido');
-$dele = new Usuario;
-$res = $dele->delete($user);
+</html>
+<?php }else{
+  header("location: index.php");
+  die();
 
-if($res!=0){
-	if($res===1){
-		echo ('El usuario no existe');
-	}else{echo('no se pudo eliminar al usuario');};
-}else{
-	echo ('usuario eliminado correctamente');
 }
+}else{
+  header("location: index.php");
+  die();
 
-?>
+}?>

@@ -1,4 +1,13 @@
 <?php
+session_start();
+$comp=0;
+if(isset($_SESSION['id'])){
+$comp=1;
+$us = $_SESSION['id'];
+$per= $_SESSION['per'];
+}
+if($comp===1){
+  if($per===2 || $per===1){
 include("mpdf/mpdf.php");
 $mpdf=new mPDF('c','A4','','' , 0 , 0 , 0 , 0 , 0 , 0);
 
@@ -12,4 +21,10 @@ $file = utf8_encode($file);
 
 $mpdf->WriteHTML($file);
 $mpdf->Output();
+}else{
+  header("location: index.php");
+  die();
+}
+}else{header("location: index.php");
+die();}
 ?>

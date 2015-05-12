@@ -55,7 +55,7 @@ $per= $_SESSION['per'];
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="index.html">Inicio</a>
+                            <a href="index.php">Inicio</a>
                         </li>
                         <?php
                         if($comp===0){
@@ -102,7 +102,7 @@ $per= $_SESSION['per'];
                         <?php
                       }else{
                         ?>
-                        <li>  <a href="Reportar.php">Generar reporte</a></li>
+                        <li>  <a href="Generapdf.php">Generar reporte</a></li>
                         <li><a><?php echo $us; ?></a></li>
                         <li>
                             <a href="Logout.php">Desconectar</a>
