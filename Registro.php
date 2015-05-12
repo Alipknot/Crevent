@@ -89,7 +89,15 @@ include 'header.php';
 				<h4 class="modal-title" id="myModalLabel">Terminos & Condiciones</h4>
 			</div>
 			<div class="modal-body">
-				<p>En proceso<p>
+				<p>
+Propiedad intelectual: todo el contenido y diseño del sitio se encontrarán protegidos por leyes de propiedad intelectual, el uso o reproducción está prohibido por la ley, la empresa se reserva los pasos a seguir en ámbito judicial respecto a la violación de esta ley.
+
+Acceso al sitio: El acceso al sitio solo será para usuarios registrados, previamente autorizados por la institución demandante, es obligación del usuario el resguardo de sus datos para acceso al sitio, Crevent group  no se hace responsable por la mala utilización de estos datos.
+
+Falla de sistema: Crevent group no se responsabiliza por daños o pérdidas de información
+Causados por falla del sistema.
+Privacidad y confidencialidad: los usuarios declaran conocer y aceptar la confidencialidad y se obliga a guardar absoluta reserva sobre los datos proporcionados por la aplicación, Crevent group  no se responsabiliza por el mal uso que los clientes den a los datos o publicaciones de información clasificada.
+<p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Acepto</button>
