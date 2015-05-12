@@ -28,28 +28,28 @@ private $db;
 		$db = $this->db;
 		$hash = $this->hasher->HashPassword($pass);
 if (strlen($hash) < 20)
-	echo('Failed to hash new password');
+	echo('No se pudo encriptar la contraseña');
 unset($hasher);
      ($stmt = $db->prepare('insert into usuario values (?,?,?,?,?,?,?,?,0)'))
-	|| fail('MySQL prepare', $db->error);
+	|| fail('error de base de datos', $db->error);
 $stmt->bind_param('ssssisss', $user, $email, $hash,$nombre,$edad, $dir, $city, $reg)
-	|| fail('MySQL bind_param', $db->error);
+	|| fail('error de ingreso, parametros no aceptados', $db->error);
 	if (!$stmt->execute()) {
 	$save_error = $db->error;
 	$stmt->close();
 
 // Does the user already exist?
 	($stmt = $db->prepare('select ID_user from usuario where ID_user=?'))
-		|| fail('MySQL prepare', $db->error);
+		|| fail('error de base de datos', $db->error);
 	$stmt->bind_param('s', $user)
-		|| fail('MySQL bind_param', $db->error);
+		|| fail('error de ingreso, parametros no aceptados', $db->error);
 	$stmt->execute()
-		|| fail('MySQL execute', $db->error);
+		|| fail('error al guardar', $db->error);
 	$stmt->store_result()
-		|| fail('MySQL store_result', $db->error);
+		|| fail('Error al recuperar resultado', $db->error);
 
 	if ($stmt->num_rows === 1)
-		fail('This username is already taken');
+		fail('El nombre de usuario esta en uso');
 	else
 		fail('MySQL execute', $save_error);
 }
