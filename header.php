@@ -3,8 +3,10 @@ session_start();
 $comp=0;
 if(isset($_SESSION['id'])){
 $comp=1;
-
+$us = $_SESSION['id'];
+$per= $_SESSION['per'];
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +19,15 @@ $comp=1;
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
         rel="stylesheet" type="text/css">
+        <?php
+        $doc = basename($_SERVER["REQUEST_URI"]);
+
+        if($doc==='Registro.php'){
+          ?>
+          <link href="css/register.css" rel="stylesheet">
+          <?php
+        }
+        ?>
         <script>
             $(document).ready(function(){
             //Handles menu drop down
@@ -30,7 +41,7 @@ $comp=1;
     </head>
 
     <body>
-        <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="navbar navbar-default navbar-static-top navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
@@ -43,14 +54,14 @@ $comp=1;
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active">
+                        <li>
                             <a href="index.html">Inicio</a>
                         </li>
                         <?php
                         if($comp===0){
                         ?>
                         <li>
-                            <a href="Registro.html">Registrarse</a>
+                            <a href="Registro.php">Registrarse</a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ingresar <strong class="caret"></strong></a>
@@ -71,15 +82,35 @@ $comp=1;
                         <?php
                       }elseif ($comp===1) {
                         # code...
-
+                          if($per===0){
                         ?>
                         <li>  <a href="Buscar.php">Buscar</a></li>
+                        <li><a><?php echo $us; ?></a></li>
+                        <li>
+                            <a href="Logout.php">Desconectar</a>
+                        </li>
+
+                        <?php
+                      }elseif($per===2){
+                        ?>
+                        <li>  <a href="delete.php">Borrar Usuario</a></li>
+                        <li><a><?php echo $us; ?></a></li>
+                        <li>
+                            <a href="Logout.php">Desconectar</a>
+                        </li>
+
+                        <?php
+                      }else{
+                        ?>
+                        <li>  <a href="Reportar.php">Generar reporte</a></li>
+                        <li><a><?php echo $us; ?></a></li>
                         <li>
                             <a href="Logout.php">Desconectar</a>
                         </li>
 
                         <?php
                       }
+                    }
                         ?>
                     </ul>
                 </div>

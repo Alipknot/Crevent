@@ -5,17 +5,17 @@ class Usuario {
     private $pass;
 	private $hash;
     private $user;
-	private $hasher; 
+	private $hasher;
 	private $nombre;
 private $email;
 private $dir;
 private $city;
 private $reg;
-private $edad;	
+private $edad;
 private $db;
 
  public function __construct()
- 
+
   {
 	  include(__DIR__ .'/../config.php');
 	  $this->db = $db;
@@ -30,10 +30,10 @@ private $db;
 if (strlen($hash) < 20)
 	echo('Failed to hash new password');
 unset($hasher);
-     ($stmt = $db->prepare('insert into usuario values (?,?,?,?,?,?,?,?)'))
+     ($stmt = $db->prepare('insert into usuario values (?,?,?,?,?,?,?,?,0)'))
 	|| fail('MySQL prepare', $db->error);
 $stmt->bind_param('ssssisss', $user, $email, $hash,$nombre,$edad, $dir, $city, $reg)
-	|| fail('MySQL bind_param', $db->error);	
+	|| fail('MySQL bind_param', $db->error);
 	if (!$stmt->execute()) {
 	$save_error = $db->error;
 	$stmt->close();
@@ -53,7 +53,7 @@ $stmt->bind_param('ssssisss', $user, $email, $hash,$nombre,$edad, $dir, $city, $
 	else
 		fail('MySQL execute', $save_error);
 }
-	
+
 echo("Usuario creado\n");
     }
 
@@ -82,8 +82,8 @@ echo("Usuario creado\n");
 	}else{
 		return 1;
 	}}
-    
-	
+
+
 	public function val_log($user, $pass){
 		$db = $this->db;
 			$hash = '*'; // In case the user is not found
@@ -102,11 +102,30 @@ echo("Usuario creado\n");
 		return true;
 	} else {
 		return false;
-		
+
 	}
 	}
 
     //fields getters and setters here as needed
-
+public function getUser($id){
+  $db = $this->db;
+  $sql = 'select ID_user, typ_Perfil from usuario WHERE ID_user=?';
+  ($stmt = $db->prepare($sql))
+  || fail('MySQL prepare', $db->error);
+$stmt->bind_param('s', $id)
+  || fail('MySQL bind_param', $db->error);
+$stmt->execute()
+  || fail('MySQL execute', $db->error);
+  $devices = array();
+  $stmt->bind_result($col1, $col2);
+    while($stmt->fetch()) {
+        $tmp = array();
+        $tmp["ID"] = $col1;
+        $tmp["per"] = $col2;
+        array_push($devices, $tmp);
+    }
+    $stmt->close();
+    return $devices;
+}
 }
 ?>

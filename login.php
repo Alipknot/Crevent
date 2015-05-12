@@ -26,9 +26,12 @@ if($logs->val_log($user, $pass)){
 	$result = false;
 }
 
-if(result){
+if($result){
+$reg=$logs->getUser($user);
+
 	session_start();
-	$_SESSION['id'] = md5(uniqid(rand(), true));
+	$_SESSION['id'] = $reg[0]["ID"];
+	$_SESSION['per'] = $reg[0]["per"];
 	header("Location: index.php");
 die();
 
