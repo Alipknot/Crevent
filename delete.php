@@ -1,7 +1,10 @@
 <?php
 include 'header.php';
+include('class/Usuario.php');
 if($comp===1){
 if($per===2){
+  $usa = new Usuario();
+  $row= $usa->getUsers();
  ?>
 <div class="section">
           <div class="container">
@@ -15,7 +18,16 @@ if($per===2){
                       <form role="form" method="POST" action="deleteuser.php">
                           <div class="form-group">
                               <div class="input-group">
-                                  <input type="text" name="user_name" class="form-control" placeholder="Nombre de usuario">
+                                <select class="btn btn-block btn-primary" id="sel1" name="user_name">
+                                      <option value="">-------------------</option>
+                                      <?php
+
+
+                                      foreach($row as $r){
+                                          if($r['per']===0 && $r['ID']!='yo')
+                                        echo("<option value='".$r['ID']."'>".$r['ID']."</option>");
+                             }?>
+                                  </select>
                                   <span class="input-group-btn">
                                       <input type="submit" class="btn btn-success" value="Borrar">
                                   </span>

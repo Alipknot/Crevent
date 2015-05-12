@@ -37,6 +37,7 @@ die();
 
 
 }else{
+	$error='contraseña incorrecta';
 	$_POST['error'] = $error;
 	echo $error;
 }

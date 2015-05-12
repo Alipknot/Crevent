@@ -159,5 +159,23 @@ $stmt->execute()
     $stmt->close();
     return $devices;
 }
+public function getUsers(){
+  $db = $this->db;
+  $sql = 'select ID_user, typ_Perfil from usuario';
+  ($stmt = $db->prepare($sql))
+  || fail('MySQL prepare', $db->error);
+$stmt->execute()
+  || fail('MySQL execute', $db->error);
+  $devices = array();
+  $stmt->bind_result($col1, $col2);
+    while($stmt->fetch()) {
+        $tmp = array();
+        $tmp["ID"] = $col1;
+        $tmp["per"] = $col2;
+        array_push($devices, $tmp);
+    }
+    $stmt->close();
+    return $devices;
+}
 }
 ?>
